@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { toggleTodoAction, deleteTodoAction } from '../store/todosActions'
-import { todosSelector } from '../store/todoSelectors'
+import { filteredTodosSelector, todosSelector } from '../store/todoSelectors'
 
 function TodoItem({todo, onToggle, onDelete}) {
     return <li>
@@ -26,7 +26,7 @@ export function TodoList({todos, onToggle, onDelete}) {
 export function TodoListStore() {
     // useSelector est un hook (fonction) qui vient de react-redux
     // useDispatch est un hook (fonction) qui vient de react-redux
-    const todos = useSelector(todosSelector)
+    const todos = useSelector(filteredTodosSelector )
     const dispatch = useDispatch()
     // on utilise useCallback pour ne pas que ce soit regénérer 
     // systematiquement
