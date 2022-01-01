@@ -1,6 +1,7 @@
 // Va être charger de convertir notre element
 
-import { DELETE_TODO_ACTION, UPDATE_TODO_ACTION } from "./todosReducer";
+import { ADD_TODO_ACTION, DELETE_TODO_ACTION, UPDATE_TODO_ACTION } from "./todosReducer";
+import wait from '../wait'
 
 // en une action qui va pouvoir être dispatché
 export const toggleTodoAction = (todo) => ({
@@ -17,3 +18,18 @@ export const deleteTodoAction = (todo) => ({
     // la chose spécifique qui s'est produite
     payload: todo.id
 })
+
+// Fonction asynchrone qui permet l'ajout qu'après 2 seconde
+// sa va renvoyer une fonction qui va prendre en
+// paramètre dispatch et qui fera un traitement particulier
+export const addTodoAction = (title) => async (dispatch) => {
+    // attend pendant 2 seconde
+    await wait(2000)
+    // Une fois que tu as fini, je vais faire un dispatch
+    // et je vais t'envoyer cette objet là
+    dispatch({
+        type: ADD_TODO_ACTION,
+        payload: {title}
+    })
+
+}

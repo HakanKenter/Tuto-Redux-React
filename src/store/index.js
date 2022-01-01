@@ -1,24 +1,18 @@
-import {createStore, combineReducers} from 'redux'
+import {createStore, combineReducers, applyMiddleware} from 'redux'
 import { filterReducer } from './filterReducer'
 import { todosReducer } from './todosReducer'
-
-const incr = function (state = 0, action) {
-  if (action.type === 'incr') {
-    return state + 1
-  }
-  return state
-}
+import {composeWithDevTools} from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
 
 const store = createStore(
     combineReducers({
       todos: todosReducer,
       filter: filterReducer,
-      incr: incr
     }),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeWithDevTools(
+      applyMiddleware(thunk),
+      // other store enhancers if any
+    )
 )
-window.setInterval(() => {
-  store.dispatch({type: 'incr'})
-}, 1000)
 
 export default store
