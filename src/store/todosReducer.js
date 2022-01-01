@@ -15,6 +15,7 @@ const initialState = [
 
 export const ADD_TODO_ACTION = 'ADD_TODO_ACTION'
 export const UPDATE_TODO_ACTION = 'UPDATE_TODO_ACTION'
+export const DELETE_TODO_ACTION = 'DELETE_TODO_ACTION'
 
 export function todosReducer(state = initialState, action) {
     switch(action.type) {
@@ -33,12 +34,18 @@ export function todosReducer(state = initialState, action) {
             // et ce qu'on a dans le payload
             return state.map(todo => {
                 // payload représente chacune des mes todos
+                // Si l'id du todo (dans le initialState) 
+                // est égale à l'id du todo que l'on a selectionner
                 if (todo.id === action.payload.id) {
                     return {...todo, ...action.payload}
                 } else {
                     return todo
                 }
             })
+        case DELETE_TODO_ACTION:
+            // renvoi le state contenant tout les todo mise à part
+            // celui de l'id a supprimer
+            return state.filter(todo => todo.id != action.payload)
         default: 
             return state
     }
