@@ -1,4 +1,4 @@
-let id = 2;
+let id = 5  ;
 
 const initialState = [
     {
@@ -10,7 +10,22 @@ const initialState = [
         id:2,
         title: 'Préparer le tutoriel',
         completed: false
-    }
+    },
+    {
+        id:3,
+        title: 'Enregistrer le tutoriel',
+        completed: false
+    },
+    {
+        id:4,
+        title: 'Enregistrer le tutoriel',
+        completed: false
+    },
+    {
+        id:5,
+        title: 'Enregistrer le tutoriel',
+        completed: false
+    },
 ]
 
 export const ADD_TODO_ACTION = 'ADD_TODO_ACTION'
